@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: dapr-test
+  name: dapr-test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dapr-test
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        dapr.io/enabled: "true"
+        dapr.io/app-id: "dapr-test"
+      labels:
+        app: dapr-test
+    spec:
+      containers:
+      - image: dapr-test
+        name: dapr-test
+        resources: {}
+status: {}
