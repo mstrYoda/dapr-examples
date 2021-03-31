@@ -7,7 +7,12 @@ ENV GOARCH=amd64
 
 WORKDIR /app
 
-COPY . .
+COPY go.mod .
+COPY go.sum .
+
+RUN go mod download
+
+COPY main.go .
 RUN go build -o main .
 
 FROM alpine
