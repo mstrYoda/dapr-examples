@@ -1,0 +1,27 @@
+apiVersion: v1
+items:
+  - apiVersion: dapr.io/v1alpha1
+    kind: Configuration
+    metadata:
+      name: appconfig
+      namespace: default
+    spec:
+      accessControl:
+        defaultAction: allow
+        policies:
+          - appId: httpbin
+            defaultAction: deny
+            namespace: default
+            operations:
+              - action: deny
+                httpVerb:
+                  - '*'
+                name: /headers
+            trustDomain: cluster.local
+        trustDomain: cluster.local
+      metric:
+        enabled: true
+kind: List
+metadata:
+  resourceVersion: ""
+  selfLink: ""
